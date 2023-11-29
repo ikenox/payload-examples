@@ -15,4 +15,5 @@ export const Orders: CollectionConfig = {
       options: ["a", "b", "c"],
     },
   ],
+  versions: { drafts: true },
 };
