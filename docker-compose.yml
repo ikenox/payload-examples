@@ -12,19 +12,24 @@ services:
     command: sh -c "yarn install && yarn dev"
     depends_on:
       - mongo
+      - postgres
     env_file:
       - .env
-
   mongo:
     image: mongo:latest
-    ports:
-      - '27017:27017'
     command:
       - --storageEngine=wiredTiger
     volumes:
       - data:/data/db
     logging:
       driver: none
+  postgres:
+    container_name: postgres
+    image: 'postgres:15'
+    environment:
+      POSTGRES_DB: payload-db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
 
 volumes:
   data:
